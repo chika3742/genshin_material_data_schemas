@@ -1,0 +1,21 @@
+$schema: https://json-schema.org/draft-07/schema
+
+type: array
+items:
+  $ref: "#/definitions/releaseNote"
+
+definitions:
+  releaseNote:
+    type: object
+    additionalProperties: false
+    required:
+      - releasedOn
+    properties:
+      releasedOn:
+        type: string
+        pattern: '^\d{4}/\d{2}/\d{2}$'
+      version:
+        type: string
+        pattern: '^\d+\.\d+\.\d+$'
+      contents:
+        type: string

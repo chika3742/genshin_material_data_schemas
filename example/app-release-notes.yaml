@@ -1,0 +1,6 @@
+- releasedOn: 2024/01/12
+  version: 5.0.0
+  contents: |
+    # New Features
+    - Foo
+    - Bar
