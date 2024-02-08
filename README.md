@@ -1,4 +1,4 @@
-## [Genshin Material] / HSR Material Data Schemas
+# _[Genshin Material]_ / _HSR Material_ Data Schemas
 
 Data schemas internally used in [Genshin Material] & HSR Material (Planned)
 
