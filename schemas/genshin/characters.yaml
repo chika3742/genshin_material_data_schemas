@@ -5,28 +5,42 @@ $schema: https://json-schema.org/draft-07/schema
 type: array
 items:
   oneOf:
+    - $ref: "#/definitions/characterGroup"
     - $ref: "#/definitions/character"
     - $ref: "#/definitions/unlistedCharacter"
 
 definitions:
-  localizedName:
+  characterGroup:
     type: object
     additionalProperties: false
     required:
-      - locales
+      - runtimeType
+      - id
+      - name
+      - jaPronunciation
+      - rarity
+      - weaponType
+      - variantIds
     properties:
-      locales:
-        type: object
-        additionalProperties:
+      runtimeType:
+        type: string
+        const: group
+      id:
+        type: string
+      name:
+        $ref: localized-text.yaml
+      jaPronunciation:
+        type: string
+      rarity:
+        type: integer
+      weaponType:
+        $ref: "#/definitions/weaponType"
+      variantIds:
+        type: array
+        items:
           type: string
-        required:
-          - ja
-          - en
-        properties:
-          ja:
-            type: string
-          en:
-            type: string
+      materials:
+        $ref: "#/definitions/characterMaterialDefinitions"
 
   character:
     type: object
@@ -35,73 +49,95 @@ definitions:
       - id
       - rid
       - name
-      - yomi
+      - jaPronunciation
       - rarity
       - weaponType
+      - element
       - materials
     properties:
+      runtimeType:
+        type: string
+        const: listed
       id:
         type: string
       rid:
         type: string
       name:
-        $ref: "#/definitions/localizedName"
-      yomi:
+        $ref: localized-text.yaml
+      jaPronunciation:
         type: string
-      listed:
-        type: boolean
-        default: true
-      variantIds:
-        type: array
-        items:
-          type: string
       rarity:
-        type: number
+        type: integer
       weaponType:
-        type: string
-        enum:
-          - sword
-          - claymore
-          - polearm
-          - bow
-          - catalyst
-      element: &genshinElements
-        type: string
-        enum:
-          - pyro
-          - cryo
-          - hydro
-          - electro
-          - anemo
-          - geo
-          - dendro
+        $ref: "#/definitions/weaponType"
+      element:
+        $ref: "#/definitions/teyvatElement"
       materials:
-        oneOf:
-          - $ref: "#/definitions/characterMaterialIds"
-          - $ref: "#/definitions/travelerAscensionMaterials"
+        $ref: "#/definitions/characterMaterialDefinitions"
 
   unlistedCharacter:
     type: object
     additionalProperties: false
     required:
-      - id
-      - listed
+      - runtimeType
+      - rid
+      - name
+      - jaPronunciation
       - parentId
+      - rarity
+      - weaponType
       - element
       - materials
     properties:
+      runtimeType:
+        type: string
+        const: unlisted
       id:
         type: string
-      listed:
-        type: boolean
-        const: false
+      rid:
+        type: string
+      name:
+        $ref: localized-text.yaml
+      jaPronunciation:
+        type: string
       parentId:
         type: string
-      element: *genshinElements
+      rarity:
+        type: integer
+      weaponType:
+        $ref: "#/definitions/weaponType"
+      element:
+        $ref: "#/definitions/teyvatElement"
       materials:
-        $ref: "#/definitions/travelerTalentMaterials"
+        $ref: "#/definitions/characterMaterialDefinitions"
 
-  characterMaterialIds:
+  weaponType:
+    type: string
+    enum:
+      - sword
+      - claymore
+      - polearm
+      - bow
+      - catalyst
+
+  teyvatElement:
+    type: string
+    enum:
+      - pyro
+      - cryo
+      - hydro
+      - electro
+      - anemo
+      - geo
+      - dendro
+
+  characterMaterialDefinitions:
+    oneOf:
+      - $ref: "#/definitions/characterMaterialDefinitionsDefault"
+      - $ref: "#/definitions/travelerAscensionMaterialDefinitions"
+      - $ref: "#/definitions/travelerTalentMaterialDefinitions"
+
+  characterMaterialDefinitionsDefault:
     type: object
     additionalProperties: false
     required:
@@ -125,7 +161,7 @@ definitions:
       talentBoss:
         type: string
 
-  travelerAscensionMaterials:
+  travelerAscensionMaterialDefinitions:
     type: object
     additionalProperties: false
     required:
@@ -140,7 +176,7 @@ definitions:
       secondary:
         type: string
 
-  travelerTalentMaterials:
+  travelerTalentMaterialDefinitions:
     type: object
     additionalProperties: false
     required:
@@ -148,32 +184,57 @@ definitions:
       - talentSecondary
       - talentBoss
     properties:
-      talentPrimary:
+      talentPrimary: &materialIdPerType
+        oneOf:
+          - $ref: "#/definitions/materialIdPerType"
+          - $ref: "#/definitions/materialIdPerLevelPerType"
+      talentSecondary: *materialIdPerType
+      talentBoss: *materialIdPerType
+
+  materialIdPerType:
+    type: object
+    additionalProperties: false
+    required:
+      - types
+    properties:
+      types:
         type: object
         additionalProperties: false
         required:
-          - types
+          - normal
+          - skill
+          - burst
         properties:
-          types:
-            type: object
-            additionalProperties:
-              type: object
-              additionalProperties: false
-              required:
-                - levels
-              properties:
-                levels:
-                  type: object
-                  additionalProperties:
-                    type: string
-      talentSecondary: &perTypesWithoutLevels
+          normal:
+            type: string
+          skill:
+            type: string
+          burst:
+            type: string
+
+  materialIdPerLevelPerType:
+    type: object
+    additionalProperties: false
+    required:
+      - types
+    properties:
+      types:
         type: object
         additionalProperties: false
         required:
-          - types
+          - normal
+          - skill
+          - burst
         properties:
-          types:
+          normal: &materialIdPerLevel
             type: object
-            additionalProperties:
-              type: string
-      talentBoss: *perTypesWithoutLevels
+            additionalProperties: false
+            required:
+              - levels
+            properties:
+              levels:
+                type: object
+                additionalProperties:
+                  type: string
+          skill: *materialIdPerLevel
+          burst: *materialIdPerLevel

@@ -1,0 +1,71 @@
+- id: traveler # characterGroup
+  runtimeType: group
+  jaPronunciation: aj
+  name:
+    locales:
+      ja: 旅人
+      en: Traveler
+  rarity: 5
+  weaponType: sword
+  variantIds:
+    - asdf
+  materials:
+    primary: a
+    local: a
+    secondary: a
+
+- id: traveler_anemo
+  runtimeType: unlisted
+  rid: avatar
+  name:
+    locales:
+      ja: 旅人（風）
+      en: Traveler (Anemo)
+  jaPronunciation: タビビトカゼ
+  rarity: 5
+  weaponType: sword
+  parentId: traveler
+  element: anemo
+  materials:
+    talentPrimary:
+      types:
+        normal:
+          levels:
+            2: asdf
+            3: asdf
+        skill:
+          levels:
+            2: asdf
+            3: asdf
+        burst:
+          levels:
+            2: asdf
+            3: asdf
+    talentSecondary:
+      types:
+        normal: asdf
+        skill: asdf
+        burst: asdf
+    talentBoss:
+      types:
+        normal: asdf
+        skill: asdf
+        burst: asdf
+
+- id: amber
+  rid: amber_01
+  name:
+    locales:
+      ja: アンバー
+      en: Amber
+  jaPronunciation: アンバー
+  rarity: 4
+  weaponType: bow
+  element: pyro
+  materials:
+    primary: asdf
+    elementalStone: asdf
+    local: asdf
+    secondary: asdf
+    talentPrimary: asdf
+    talentBoss: asdf

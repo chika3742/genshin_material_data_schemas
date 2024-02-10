@@ -1,0 +1,17 @@
+$schema: https://json-schema.org/draft-07/schema
+
+type: object
+additionalProperties: false
+required:
+  - locales
+properties:
+  locales:
+    type: object
+    required:
+      - ja
+      - en
+    properties:
+      ja:
+        type: string
+      en:
+        type: string
