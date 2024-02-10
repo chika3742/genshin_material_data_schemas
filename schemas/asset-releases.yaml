@@ -1,0 +1,23 @@
+$schema: https://json-schema.org/draft-07/schema
+
+type: array
+items:
+  type: object
+  required:
+    - releasedAt
+    - dataVersion
+    - channel
+    - distUrl
+  properties:
+    releasedAt:
+      type: string
+      description: Date in ISO8601 format
+    dataVersion:
+      type: string
+    channel:
+      type: string
+      enum:
+        - prod
+        - staging
+    distUrl:
+      type: string
