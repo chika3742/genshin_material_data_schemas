@@ -1,23 +1,37 @@
 $schema: https://json-schema.org/draft-07/schema
 
-type: array
-items:
-  type: object
-  required:
-    - releasedAt
-    - dataVersion
-    - channel
-    - distUrl
-  properties:
-    releasedAt:
-      type: string
-      description: Date in ISO8601 format
-    dataVersion:
-      type: string
-    channel:
-      type: string
+type: object
+additionalProperties: false
+required:
+  - channels
+properties:
+  channels:
+    type: object
+    additionalProperties:
+      $ref: "#/definitions/assetRelease"
+    propertyNames:
       enum:
-        - prod
         - staging
-    distUrl:
-      type: string
+        - prod
+
+definitions:
+  assetRelease:
+    type: object
+    required:
+      - releasedAt
+      - dataVersion
+      - channel
+      - distUrl
+    properties:
+      releasedAt:
+        type: string
+        description: Date in ISO8601 format
+      dataVersion:
+        type: string
+      channel:
+        type: string
+        enum:
+          - prod
+          - staging
+      distUrl:
+        type: string

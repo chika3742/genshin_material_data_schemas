@@ -1,0 +1,6 @@
+channels:
+  staging:
+    releasedAt: "2024-02-10T12:34:32Z"
+    channel: staging
+    dataVersion: 4.0.0
+    distUrl: "https://example.com"

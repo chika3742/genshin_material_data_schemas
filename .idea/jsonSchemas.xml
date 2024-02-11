@@ -22,6 +22,23 @@
             </SchemaInfo>
           </value>
         </entry>
+        <entry key="asset-releases">
+          <value>
+            <SchemaInfo>
+              <option name="generatedName" value="New Schema" />
+              <option name="name" value="asset-releases" />
+              <option name="relativePathToSchema" value="schemas/asset-releases.yaml" />
+              <option name="schemaVersion" value="JSON Schema version 7" />
+              <option name="patterns">
+                <list>
+                  <Item>
+                    <option name="path" value="example/asset-releases.yaml" />
+                  </Item>
+                </list>
+              </option>
+            </SchemaInfo>
+          </value>
+        </entry>
         <entry key="characters">
           <value>
             <SchemaInfo>
