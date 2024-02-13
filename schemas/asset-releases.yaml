@@ -22,6 +22,7 @@ definitions:
       - dataVersion
       - channel
       - distUrl
+      - objectId
     properties:
       releasedAt:
         type: string
@@ -34,4 +35,6 @@ definitions:
           - prod
           - staging
       distUrl:
+        type: string
+      objectId:
         type: string
