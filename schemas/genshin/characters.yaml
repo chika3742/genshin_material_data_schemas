@@ -148,6 +148,9 @@ definitions:
       - talentPrimary
       - talentBoss
     properties:
+      runtimeType:
+        type: string
+        const: default
       primary:
         type: string
       elementalStone:
@@ -165,10 +168,14 @@ definitions:
     type: object
     additionalProperties: false
     required:
+      - runtimeType
       - primary
       - local
       - secondary
     properties:
+      runtimeType:
+        type: string
+        const: travelerAscension
       primary:
         type: string
       local:
@@ -180,10 +187,14 @@ definitions:
     type: object
     additionalProperties: false
     required:
+      - runtimeType
       - talentPrimary
       - talentSecondary
       - talentBoss
     properties:
+      runtimeType:
+        type: string
+        const: travelerTalent
       talentPrimary: &materialIdPerType
         oneOf:
           - $ref: "#/definitions/materialIdPerType"
@@ -197,6 +208,9 @@ definitions:
     required:
       - types
     properties:
+      runtimeType:
+        type: string
+        const: default
       types:
         type: object
         additionalProperties: false
@@ -216,8 +230,12 @@ definitions:
     type: object
     additionalProperties: false
     required:
+      - runtimeType
       - types
     properties:
+      runtimeType:
+        type: string
+        const: byLevel
       types:
         type: object
         additionalProperties: false
