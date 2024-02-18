@@ -18,6 +18,7 @@ definitions:
       - id
       - name
       - jaPronunciation
+      - imageUrl
       - rarity
       - weaponType
       - variantIds
@@ -30,6 +31,8 @@ definitions:
       name:
         $ref: localized-text.yaml
       jaPronunciation:
+        type: string
+      imageUrl:
         type: string
       rarity:
         type: integer
@@ -50,6 +53,8 @@ definitions:
       - rid
       - name
       - jaPronunciation
+      - imageUrl
+      - smallImageUrl
       - rarity
       - weaponType
       - element
@@ -65,6 +70,10 @@ definitions:
       name:
         $ref: localized-text.yaml
       jaPronunciation:
+        type: string
+      imageUrl:
+        type: string
+      smallImageUrl:
         type: string
       rarity:
         type: integer
@@ -83,6 +92,7 @@ definitions:
       - rid
       - name
       - jaPronunciation
+      - smallImageUrl
       - parentId
       - rarity
       - weaponType
@@ -99,6 +109,8 @@ definitions:
       name:
         $ref: localized-text.yaml
       jaPronunciation:
+        type: string
+      smallImageUrl:
         type: string
       parentId:
         type: string
